@@ -1,5 +1,7 @@
 # Potential
-A couple of functions for computing path integrals and scalar potentials in an arbitrary number of dimensions
+A couple of functions for computing path integrals and scalar potentials in an arbitrary number of dimensions.
+
+Requires Matlab R2012a or newer.
 
 ## Background
 The main purpose of this piece of code is computing the scalar potential function associated to a given vector field. In order to do so, we'll introduce the tool of path integral.
