@@ -1,5 +1,19 @@
 # Potential
-A couple of functions for computing path integrals and potentials in N dimensions
+A couple of functions for computing path integrals and scalar potentials in an arbitrary number of dimensions
+
+## Background
+### Path integrals
+A path integral, also known as line or curve integral, is an integral where the integrand is evaluated along a curve.
+
+![GeneralPathIntegral](https://github.com/PabRod/Potential/blob/master/figs/path_general.png "General path integral")
+
+The usual way of evaluating it requires the specification of a parameterization of the curve:
+
+![GeneralParametric](https://github.com/PabRod/Potential/blob/master/figs/parameter_curve.png "General parametric curve")
+
+So our path integral turns into the classical integral:
+
+![PathIntegralEvaluation](https://github.com/PabRod/Potential/blob/master/figs/path_parametric.png "Path integral evaluation")
 
 ## Examples of usage
 ### Path integral along a parametric curve
