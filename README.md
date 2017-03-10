@@ -37,10 +37,10 @@ Where the value of the potential at x_0 is an arbitrary integration constant.
 ## Examples of usage
 ### Path integral along a parametric curve
 ```[Matlab]
-# Underlying field
+% Underlying field
 field = @(x) [-x(2), -x(1)];
 
-# Parametric curve specification
+% Parametric curve specification
 curve = @(t) [t, t];
 dcurve = @(t) [1, 1];
 tmin = -2;
@@ -52,38 +52,61 @@ s = PathIntegral(field, curve, dcurve, tmin, tmax);
 ### Path integral over a conservative field
 In the case of conservative fields the integral only depends in the initial and final points of the integration path. Thus, we can specify only those points regardless of the integration curve
 ```[Matlab]
-# Underlying field
+% Underlying field
 field = @(x) [-2.*x(1).*x(2), -x(1).^2];
 
-# Initial and final points
+% Initial and final points
 x0 = [1 2];
 x = [3 4];
 
-# Path integral
+% Path integral
 s = PathIntegral(field, x0, x);
 ```
 
 ### One-dimensional potential
 Given a conservative field, we can compute the associated potential
 ```[Matlab]
-# Underlying field
+% Underlying field
 field = @(x) -4*x.^3 + 3*x.^2 + 10*x - 1;
 
-# Grid characteristics
+% Grid characteristics
 x = -2:0.05:3;
 
-# Setting the reference potential
+% Setting the reference potential
 x0 = -2;
 V0 = 0;
 
-# Compute the potential
+% Compute the potential
 V = Potential(field, V0, x0, x);
 
-# Plot results
+% Plot results
 plot(x, V);
 ```
 
 ![Potential1D](https://github.com/PabRod/Potential/blob/master/figs/potential_1D.png "Computation of a scalar potential")
+
+### Two-dimensional potential
+```[Matlab]
+% Underlying field
+field = @(x) [ -x(1).^3 + x(1), -x(2).^3 + x(2)];
+
+% Grid characteristics
+x = -1.5:0.1:1.5;
+y = -1.5:0.1:1.5;
+[xm, ym] = meshgrid(x,y);
+
+% Setting the reference potential
+x0 = zeros(1, 2);
+V0 = 0;
+
+% Compute the potential
+V = Potential(field, V0, x0, xm, ym);
+
+% Plot results
+figure; surf(xm, ym, V);
+```
+
+![Potential2D](https://github.com/PabRod/Potential/blob/master/figs/potential_2D.png "Computation of a scalar potential")
 
 
 By Pablo Rodríguez-Sánchez, March 2017.
