@@ -2,18 +2,37 @@
 A couple of functions for computing path integrals and scalar potentials in an arbitrary number of dimensions
 
 ## Background
+The main purpose of this piece of code is computing the scalar potential function associated to a given vector field. In order to do so, we'll introduce the tool of path integral.
+
 ### Path integrals
-A path integral, also known as line or curve integral, is an integral where the integrand is evaluated along a curve.
+A path integral, also known as line or curve integral, is an integral where the integrand is evaluated along a curve:
 
 ![GeneralPathIntegral](https://github.com/PabRod/Potential/blob/master/figs/path_general.png "General path integral")
 
-The usual way of evaluating it requires the specification of a parameterization of the curve:
+The usual way of evaluating a path integral requires the specification of a parameterization of the curve:
 
 ![GeneralParametric](https://github.com/PabRod/Potential/blob/master/figs/parameter_curve.png "General parametric curve")
 
-So our path integral turns into the classical integral:
+So our path integral becomes the classical integral:
 
 ![PathIntegralEvaluation](https://github.com/PabRod/Potential/blob/master/figs/path_parametric.png "Path integral evaluation")
+
+### Gradient fields
+A gradient field is a vector field that can be derived as the gradient of a scalar field. For historical reasons, a minus sign is introduced
+
+![GradientField](https://github.com/PabRod/Potential/blob/master/figs/gradient_field.png "Gradient field")
+
+Path integrals over gradient fields depend only on the beginning and finishing points of the integration, being independent of the particular curve between them. So, provided f is a gradient field, we can make non ambiguous sense of an expression like:
+
+![PathOverGradient](https://github.com/PabRod/Potential/blob/master/figs/path_gradient.png "Path integral over a gradient field")
+
+### Scalar potentials
+
+Provided a gradient field, we can compute the associated scalar potential using:
+
+![Potential](https://github.com/PabRod/Potential/blob/master/figs/general_potential.png "Computation of a scalar potential")
+
+Where the value of the potential at x_0 is an arbitrary integration constant.
 
 ## Examples of usage
 ### Path integral along a parametric curve
