@@ -63,23 +63,27 @@ x = [3 4];
 s = PathIntegral(field, x0, x);
 ```
 
-### Potential
+### One-dimensional potential
 Given a conservative field, we can compute the associated potential
 ```[Matlab]
 # Underlying field
-field = @(x) [ -x(2), -x(1)];
+field = @(x) -4*x.^3 + 3*x.^2 + 10*x - 1;
 
 # Grid characteristics
-x = -1:0.025:1;
-y = -1:0.05:1.2;
-[xm, ym] = meshgrid(x,y);
+x = -2:0.05:3;
 
-# Fixing of the potential at origin
-x0 = zeros(1, 2);
-V0 = Vexpected(x0(1), x0(2));
+# Setting the reference potential
+x0 = -2;
+V0 = 0;
 
-# Compute potential
-V = Potential(field, V0, x0, xm, ym);
+# Compute the potential
+V = Potential(field, V0, x0, x);
+
+# Plot results
+plot(x, V);
 ```
+
+![Potential1D](https://github.com/PabRod/Potential/blob/master/figs/potential_1D.png "Computation of a scalar potential")
+
 
 By Pablo Rodríguez-Sánchez, March 2017.
