@@ -22,7 +22,7 @@ A gradient field is a vector field that can be derived as the gradient of a scal
 
 ![GradientField](https://github.com/PabRod/Potential/blob/master/figs/gradient_field.png "Gradient field")
 
-Path integrals over gradient fields depend only on the beginning and finishing points of the integration, being independent of the particular curve between them. So, provided f is a gradient field, we can make non ambiguous sense of an expression like:
+Path integrals over gradient fields depend only on the beginning and finishing points of the integration, being independent of the particular curve chosen to integrate between them. So, provided f is a gradient field, we can make non-ambiguous sense of an expression like:
 
 ![PathOverGradient](https://github.com/PabRod/Potential/blob/master/figs/path_gradient.png "Path integral over a gradient field")
 
