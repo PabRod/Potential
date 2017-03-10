@@ -108,5 +108,4 @@ figure; surf(xm, ym, V);
 
 ![Potential2D](https://github.com/PabRod/Potential/blob/master/figs/potential_2D.png "Computation of a scalar potential")
 
-
-By Pablo Rodríguez-Sánchez, March 2017.
+By [Pablo Rodríguez-Sánchez](https://sites.google.com/site/pablorodriguezsanchez/ "Contact"), March 2017.
