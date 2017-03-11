@@ -51,8 +51,8 @@ tmax = 1;
 % Path integral
 s = PathIntegral(field, curve, dcurve, tmin, tmax);
 ```
-### Path integral over a conservative field
-In the case of conservative fields the integral only depends in the initial and final points of the integration path. Thus, we can specify only those points regardless of the integration curve
+### Path integral over a gradient field
+In the case of gradient fields the integral only depends in the initial and final points of the integration path. Thus, we can specify only those points regardless of the integration curve
 ```[Matlab]
 % Underlying field
 field = @(x) [-2.*x(1).*x(2), -x(1).^2];
@@ -66,7 +66,7 @@ s = PathIntegral(field, x0, x);
 ```
 
 ### One-dimensional potential
-Given a conservative field, we can compute the associated potential
+Given a gradient field, we can compute the associated potential
 ```[Matlab]
 % Underlying field
 field = @(x) -4*x.^3 + 3*x.^2 + 10*x - 1;
