@@ -87,17 +87,17 @@ function s = PathIntegralParametric(field, curve, dcurve, tmin, tmax)
 % tmax = 1;
 % PathIntegral(field, curve, dcurve, tmin, tmax)
 
+%% Compute
+fieldt = @(t) field(curve(t)); % Evaluate the field on the path
+integrand = @(t) sum(fieldt(t).*dcurve(t)); % Scalar integrand
+s = integral(integrand, tmin, tmax, 'ArrayValue', 1);
+
 %% TODO: Input control
 
 %% TODO: compute dcurve numerically
 % epsilon = 1e-14;
 % dcurvenum = @(t,s) (curve(t+s) - curve(t))/s;
 % dcurve = @(t) dcurvenum(t, epsilon);
-
-%% Compute
-fieldt = @(t) field(curve(t)); % Evaluate the field on the path
-integrand = @(t) sum(fieldt(t).*dcurve(t)); % Scalar integrand
-s = integral(integrand, tmin, tmax, 'ArrayValue', 1);
 
 end
 
@@ -123,6 +123,8 @@ tmax = 1;
 
 %% Call parametric method
 s = PathIntegralParametric(field, curve, dcurve, tmin, tmax);
+
+%% TODO: throw warning if field is non-gradient
 
 end
 

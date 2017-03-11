@@ -69,7 +69,7 @@ V = Potential(field, V0, x0, xm, ym);
 errors = abs(V - Vexpected(xm, ym));
 assert(~all(errors(:) < absTol));
 
-%{
+%%{
 %% Case: 3D correct potential
 field = @(x) [ -x(2).*x(3), -x(1).*x(3), -x(1).*x(2)];
 Vexpected = @(x,y,z) x.*y.*z;
@@ -86,7 +86,7 @@ V = Potential(field, V0, x0, xm, ym, zm);
 errors = abs(V - Vexpected(xm, ym, zm));
 assert(all(errors(:) < absTol));
 
-%}
+%%}
 
 % Tests of usability
 %{

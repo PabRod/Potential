@@ -62,7 +62,7 @@ s = PathIntegral(field, curve, dcurve, tmin, tmax);
 expected = -1;
 assert(abs(s - expected) < absTol);
 
-% Integration over conservative field
+% Integration over gradient field
 %% Cartesian
 field = @(x) [-2.*x(1).*x(2), -x(1).^2];
 x0 = [1 2];

@@ -49,6 +49,11 @@ end
 dims = nargin - 3; % Dimensions of the problem space = number of varargin
 gridSize = size(varargin{1});
 
+% Display warning for higher dimensional potentials
+if dims > 1
+    warning('The current implementation of Potential.m cannot guarantee that the field is gradient for dimensions higher than one');
+end
+
 % Input vectorization
 Xmesh = cell(1, dims);
 Xvect = zeros(dims, numel(varargin{1}));
