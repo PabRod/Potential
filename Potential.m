@@ -49,9 +49,17 @@ end
 dims = nargin - 3; % Dimensions of the problem space = number of varargin
 gridSize = size(varargin{1});
 
-% Display warning for higher dimensional potentials
-if dims > 1
-    warning('The current implementation of Potential.m cannot guarantee that the field is gradient for dimensions higher than one');
+% Check if the system is gradient, and warn the user if not
+isGradient = IsGradientField(field);
+if ~isGradient
+    prompt = 'The introduced field is not a gradient field. Continue anyway? Y/N [N]: ';
+    str = input(prompt,'s');
+    
+    if strcmp(str, 'Y') || strcmp(str, 'y')
+        warning('The system is not gradient. The computed function is not a proper potential');
+    else
+        error('The system is not gradient. Interrupted by user');
+    end
 end
 
 % Input vectorization

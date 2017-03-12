@@ -28,6 +28,10 @@ Path integrals over gradient fields depend only on the beginning and finishing p
 
 ![PathOverGradient](https://github.com/PabRod/Potential/blob/master/figs/path_gradient.png "Path integral over a gradient field")
 
+One straightforward consequence of this is that any path integral over a gradient field and along a closed curve (which starts and ends at the same point) should equal zero.
+
+![PathOverClosedPath](https://github.com/PabRod/Potential/blob/master/figs/closed_path.png "Path integral over a gradient field and a closed path")
+
 ### Scalar potentials
 
 Provided a gradient field, we can compute the associated scalar potential using:
