@@ -67,6 +67,23 @@ x = [3 4];
 
 % Path integral
 s = PathIntegral(field, x0, x);
+
+### Path integral using symbolic functions
+For those used to work with the symbolic toolbox of Matlab
+```[Matlab]
+% Define symbolic variables
+syms x y t;
+
+% Underlying field
+field(x,y) [-y, -x];
+
+% Parametric curve specification
+curve(t) = [t, t];
+tmin = -2;
+tmax = 1;
+
+% Path integral
+s = PathIntegral(field, curve, tmin, tmax);
 ```
 
 ### One-dimensional potential

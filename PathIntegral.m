@@ -6,6 +6,10 @@ function s = PathIntegral(field, varargin)
 % an integration path. The derivative dcurve respective to the parameter
 % should be provided, as well as the parameter limits tmin and tmax
 %
+% PathIntegral(field, curve, tmin, tmax), where field and curve are
+% symfun objects perform the integral without the requirement of providing
+% the derivative
+%
 % PathIntegral(field, x0, x) uses a straigth line between x0 and x as
 % integration path. This is specially useful for working with conservative
 % fields, where the path integral doesn't depend on the particular shape of
@@ -55,6 +59,13 @@ switch nargin
         
         s = PathIntegralCartesian(field, x0, x);
         
+    case 4 % Integrate along parametric curve using symbolic functions
+        curve = varargin{1};
+        tmin = varargin{2};
+        tmax = varargin{3};
+        
+        s = PathIntegralSymbolic(field, curve, tmin, tmax);
+        
     case 5 % Integrate along parametric curve
         % Proper and general definition of a path integral
         curve = varargin{1};
@@ -68,8 +79,6 @@ switch nargin
         msgId = 'PathIntegral:WrongNargin';
         errMsg = 'Wrong number of input arguments';
         error(msgId, errMsg);
-        
-    %TODO: add case 4 with numerical computation of dcurve
         
 end
 
@@ -128,3 +137,42 @@ s = PathIntegralParametric(field, curve, dcurve, tmin, tmax);
 
 end
 
+function s = PathIntegralSymbolic(field, curve, tmin, tmax)
+%PATHINTEGRALSYMBOLIC Computes the integral of a vector field along the
+%provided curve. Both the field and the curve are provided as symbolic
+%objects
+%
+% syms x y t;
+% field(x,y) = [-y, -x];
+% curve(t) = [t, t.^2];
+% tmin = 0;
+% tmax = 1;
+% s = PathIntegral(field, curve, tmin, tmax));
+
+%% Input control
+arginOk = isa(field, 'symfun') && isa(curve, 'symfun');
+if ~arginOk
+    msgId = 'PathIntegral:SymArginRequired';
+    errMsg = 'Arguments field and curve are expected to by of type symfun';
+    error(msgId, errMsg);
+end
+
+%% Algorithm
+syms t;
+
+% This trick is required for adding curve(t) as the input to f(x, y, ...)
+dims = numel(curve(t));
+input = cell(1, dims);
+for i = 1:dims
+   versor = zeros(1, dims);
+   versor(i) = 1;
+   input{i} = curve(t)*versor'; % Example: input = {curve(t)*[1 0]', curve(t)*[0 1]'};
+end
+
+fieldt(t) = field(input{:});
+dcurve(t) = diff(curve(t), t);
+integrand(t) = fieldt(t)*dcurve(t)';
+
+s = int(integrand(t), tmin, tmax);
+
+end

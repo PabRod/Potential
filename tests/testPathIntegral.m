@@ -89,6 +89,28 @@ s = PathIntegral(field, x0, x);
 expected = 0.5;
 assert(abs(s - expected) < absTol);
 
+%% 1D symbolic
+syms x t;
+field(x) = x;
+curve(t) = t;
+tmin = 0;
+tmax = 1;
+s = double(PathIntegral(field, curve, tmin, tmax));
+
+expected = 0.5;
+assert(abs(s - expected) < absTol);
+
+%% 2D symbolic
+syms x y t;
+field(x,y) = [-y, -x];
+curve(t) = [t, t.^2];
+tmin = 0;
+tmax = 1;
+s = double(PathIntegral(field, curve, tmin, tmax));
+
+expected = -1;
+assert(abs(s - expected) < absTol);
+
 % Tests of usability
 %{
 %% Wrong nargin
