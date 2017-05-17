@@ -145,6 +145,6 @@ try
     PathIntegral(field, curve, tmin, tmax); % 4 input arguments requires symbolic input
     assert(false, 'Exception failed to be thrown');
 catch me
-    expectedError = 'PathIntegral:ExpectedSymbolic';
+    expectedError = 'PathIntegralSymbolic:SymArginRequired';
     assert(strcmp(me.identifier, expectedError));
 end
