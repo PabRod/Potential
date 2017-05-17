@@ -112,7 +112,6 @@ expected = -1;
 assert(abs(s - expected) < absTol);
 
 % Tests of usability
-%{
 %% Wrong nargin
 field = @(x) [-x(2), -x(1)];
 curve = @(t) [t, t];
@@ -120,6 +119,32 @@ dcurve = @(t) [1, 1];
 tmin = -2;
 tmax = 1;
 
-assertExceptionThrown(@() PathIntegral(field), 'PathIntegral:WrongNargin');
-assertExceptionThrown(@() PathIntegral(field, curve, dcurve, tmin, tmax, 1, 2, 3), 'PathIntegral:WrongNargin');
-%}
+try
+    PathIntegral(field); % Too few input arguments
+    assert(false, 'Exception failed to be thrown');
+catch me
+    expectedError = 'PathIntegral:WrongNargin';
+    assert(strcmp(me.identifier, expectedError));
+end
+
+try
+    PathIntegral(field, curve, dcurve, tmin, tmax, 1, 2, 3); % Too many input arguments
+    assert(false, 'Exception failed to be thrown');
+catch me
+    expectedError = 'PathIntegral:WrongNargin';
+    assert(strcmp(me.identifier, expectedError));
+end
+
+%% Wrong symbolic
+field = @(x) [-x(2), -x(1)];
+curve = @(t) [t, t.^2];
+tmin = 0;
+tmax = 1;
+
+try
+    PathIntegral(field, curve, tmin, tmax); % 4 input arguments requires symbolic input
+    assert(false, 'Exception failed to be thrown');
+catch me
+    expectedError = 'PathIntegral:ExpectedSymbolic';
+    assert(strcmp(me.identifier, expectedError));
+end

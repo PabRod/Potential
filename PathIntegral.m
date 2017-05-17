@@ -64,7 +64,14 @@ switch nargin
         tmin = varargin{2};
         tmax = varargin{3};
         
-        s = PathIntegralSymbolic(field, curve, tmin, tmax);
+        % This method is only valid for symbolic functions
+        if isa(field, 'sym') || isa(field, 'symfun')
+            s = PathIntegralSymbolic(field, curve, tmin, tmax);
+        else
+            msgId = 'PathIntegral:ExpectedSymbolic';
+            errMsg = 'Wrong argument. With 4 nargin, field should be symbolic';
+            error(msgId, errMsg);
+        end
         
     case 5 % Integrate along parametric curve
         % Proper and general definition of a path integral
