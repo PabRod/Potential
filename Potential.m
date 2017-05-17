@@ -1,7 +1,7 @@
 function V = Potential(field, V0, x0, varargin)
 %POTENTIAL Computes numerically the potential of a gradient field
 %   Gradient fields can be computed as the gradient of a scalar field. This
-%   scalar field, reversed in sign, is know as potential.
+%   scalar field, reversed in sign, is known as potential.
 %
 % Syntax:
 %
@@ -52,7 +52,7 @@ gridSize = size(varargin{1});
 % Check if the system is gradient, and warn the user if not
 isGradient = IsGradientField(field);
 if ~isGradient
-    prompt = 'The introduced field is not a gradient field. Continue anyway? Y/N [N]: ';
+    prompt = 'The introduced field is not a gradient field. Continue anyways? Y/N [N]: ';
     str = input(prompt,'s');
     
     if strcmp(str, 'Y') || strcmp(str, 'y')
